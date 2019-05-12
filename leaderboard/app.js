@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const engine = require('ejs-mate');
 const session = require('express-session');
 const methodOverride = require('method-override');
-const seedDB = require('./seeds');
+// const seedDB = require('./seeds');
 // const Week = require('./models/weeks');
 
 // Require Routes ==========================================
@@ -22,7 +22,7 @@ const app = express();
 
 // Uncomment to seed the Database!
 
-// seedDB();
+// seedDB(10);
 
 // Connect with the database ===============================
 mongoose.connect('mongodb://localhost:27017/leaderboard', { useNewUrlParser: true });
@@ -62,13 +62,6 @@ app.use(
 // define locals
 
 app.use(function(req, res, next) {
-  // always logged in
-  req.user = {
-    username: 'lucas',
-    isAdmin: true
-  };
-  // user authentication
-  res.locals.currentUser = req.user;
   // set flash messages
   res.locals.success = req.session.success || '';
   delete req.session.success;
@@ -80,8 +73,8 @@ app.use(function(req, res, next) {
 
 // Mount Routes ============================================
 
+app.use('/weeks', weeksRoutes);
 app.use('/', indexRoutes);
-app.use('/admin/weeks', weeksRoutes);
 
 // catch 404 and forward to error handler ==================
 

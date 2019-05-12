@@ -1,32 +1,35 @@
 var express = require('express');
 var router = express.Router();
-var { asyncErrorHandler,
-				isAdmin } = require('../middleware');
+var { asyncErrorHandler } = require('../middleware');
 var {
-	postAdminWeek,
-	getAdminWeeks,
+	postWeek,
+	getWeeks,
 	getNewWeek,
+	getShowWeek,
 	getEditWeek,
 	updateWeek,
 	deleteWeek
 } = require('../controllers/weeks');
 
-/* GET /admin/weeks/new */
+/* GET /weeks */
+router.get('/', asyncErrorHandler(getWeeks));
+
+/* GET /weeks/new */
 router.get('/new', getNewWeek);
 
-/* POST /admin/weeks */
-router.post('/', asyncErrorHandler(postAdminWeek));
+/* POST /weeks */
+router.post('/', asyncErrorHandler(postWeek));
 
-// /* GET /admin/weeks */
-// router.get('/', asyncErrorHandler(getAdminWeeks));
+/* GET /weeks/:id */
+router.get('/:id', asyncErrorHandler(getShowWeek));
 
-// /* GET admin/weeks/:id/edit */
+// /* GET /weeks/:id/edit */
 // router.get('/:id/edit', asyncErrorHandler(getEditWeek));
 
-// /* PUT admin/weeks/:id */
+// /* PUT /weeks/:id */
 // router.put('/:id', asyncErrorHandler(updateWeek));
 
-// /* DELETE admin/weeks/:id */
+// /* DELETE /weeks/:id */
 // router.delete('/:id', asyncErrorHandler(deleteWeek));
 
 module.exports = router;

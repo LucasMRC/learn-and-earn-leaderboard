@@ -2,13 +2,20 @@ const Week = require('../models/week');
 module.exports = {
 
 	/* GET /admin/weeks */
-	async getAdminWeeks (req, res, next) {
+	async getWeeks (req, res, next) {
 		const weeks = await Week.paginate({}, {
 			page: req.query.page || 1,
-			limit: 12
+			limit: 12,
+			sort: { date: -1 }
 		});
 		weeks.page = Number(weeks.page);
 		res.render('weeks/index', { weeks });
+	},
+
+	/* GET week show page. */
+	async getShowWeek (req, res, next) {
+		const week = await Week.findById(req.params.id);		
+		res.render('show-week', { week });
 	},
 
 	/* GET /admin/weeks/new */
@@ -17,7 +24,7 @@ module.exports = {
 	},
 
 	/* POST /admin/weeks */
-	async postAdminWeek (req, res, next) {
+	async postWeek (req, res, next) {
 		if (!req.body.adminAuth || req.body.adminAuth !== process.env.ADMIN_AUTH) {
 			return res.redirect('/');
 		}
@@ -31,7 +38,7 @@ module.exports = {
  		};
  		await Week.create(newWeek);
 		req.session.success = 'Week created successfully!'
-		res.redirect('/admin/weeks'); 			
+		res.redirect('/weeks'); 			
  	},
 
 	// /* GET admin/weeks/:id/edit */
