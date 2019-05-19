@@ -1,45 +1,47 @@
 const Week = require('../models/week');
 module.exports = {
-
 	/* GET /admin/weeks */
-	async getWeeks (req, res, next) {
-		const weeks = await Week.paginate({}, {
-			page: req.query.page || 1,
-			limit: 12,
-			sort: { date: -1 }
-		});
+	async getWeeks(req, res, next) {
+		const weeks = await Week.paginate(
+			{},
+			{
+				page: req.query.page || 1,
+				limit: 12,
+				sort: { date: -1 }
+			}
+		);
 		weeks.page = Number(weeks.page);
 		res.render('weeks/index', { weeks });
 	},
 
 	/* GET week show page. */
-	async getShowWeek (req, res, next) {
-		const week = await Week.findById(req.params.id);		
+	async getShowWeek(req, res, next) {
+		const week = await Week.findById(req.params.id);
 		res.render('show-week', { week });
 	},
 
 	/* GET /admin/weeks/new */
-	getNewWeek (req, res, next) {
-	 	res.render('weeks/new');
+	getNewWeek(req, res, next) {
+		res.render('weeks/new');
 	},
 
 	/* POST /admin/weeks */
-	async postWeek (req, res, next) {
+	async postWeek(req, res, next) {
 		if (!req.body.adminAuth || req.body.adminAuth !== process.env.ADMIN_AUTH) {
 			return res.redirect('/');
 		}
- 		let newWeek = {
- 			dateRange: req.body.weekDays,
- 			winners: [
-	 			{ place: '1st', name: req.body.first },
-	 			{ place: '2nd', name: req.body.second },
-	 			{ place: '3rd', name: req.body.third }
- 			]
- 		};
- 		await Week.create(newWeek);
-		req.session.success = 'Week created successfully!'
-		res.redirect('/weeks'); 			
- 	},
+		let newWeek = {
+			dateRange: req.body.weekDays,
+			winners: [
+				{ place: '1st', name: req.body.first },
+				{ place: '2nd', name: req.body.second },
+				{ place: '3rd', name: req.body.third }
+			]
+		};
+		await Week.create(newWeek);
+		req.session.success = 'Week created successfully!';
+		res.redirect('/weeks');
+	}
 
 	// /* GET admin/weeks/:id/edit */
 	// async getEditWeek (req, res, next) {
@@ -54,8 +56,8 @@ module.exports = {
 	//  			{ place: '1st', name: req.body.first },
 	//  			{ place: '2nd', name: req.body.second },
 	//  			{ place: '3rd', name: req.body.third }
- // 			];
- // 		week.dateRange = req.body.dateRange;
+	// 			];
+	// 		week.dateRange = req.body.dateRange;
 	//   week.save();
 	//   		req.session.success = 'Week edited successfully!'
 	// 	res.redirect('/admin/weeks');

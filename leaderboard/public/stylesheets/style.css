@@ -1,27 +1,33 @@
-
 /*--------------------
-				Generals
+        Generals
 --------------------*/
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
 }
 
-body, html {
+body,
+html {
   min-height: 90vh;
 }
 
 body {
-  margin: 0;  
-  background: radial-gradient(ellipse farthest-corner at center top, #f39264 0%, #f2606f 100%) no-repeat;
+  margin: 0;
+  background: radial-gradient(
+      ellipse farthest-corner at center top,
+      #f39264 0%,
+      #f2606f 100%
+    )
+    no-repeat;
   color: #fff;
   font-family: 'Open Sans', sans-serif;
 }
 
-a, a:hover  {
+a,
+a:hover {
   text-decoration: none;
   color: white;
 }
@@ -55,7 +61,7 @@ footer {
 }
 
 /*--------------------
-		 Flash-Message
+     Flash-Message
 --------------------*/
 
 div.flash {
@@ -67,7 +73,7 @@ div.flash {
 
 div.flash h3 {
   font-size: 1.17rem;
-  margin: .5rem auto;
+  margin: 0.5rem auto;
 }
 
 div.flash h3 i.fas {
@@ -76,7 +82,7 @@ div.flash h3 i.fas {
   padding: 1.3rem 0 0;
   margin-right: 1.3rem;
   text-align: center;
-  border-radius: .5rem 0 0 .5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
 }
 
 div.flash.success-message i.fas {
@@ -103,7 +109,7 @@ div.flash.error-message i.fas {
   height: 308px;
   background: linear-gradient(to bottom, #3a404d, #181c26);
   border-radius: 1rem;
-  box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
+  box-shadow: 0 7px 30px rgba(62, 9, 11, 0.3);
 }
 
 .leaderboard h1 {
@@ -132,8 +138,8 @@ div.flash.error-message i.fas {
 }
 
 .leaderboard ol {
-  list-style-type: none; 
-  padding: 0; 
+  list-style-type: none;
+  padding: 0;
   margin: 0;
 }
 
@@ -161,7 +167,6 @@ div.flash.error-message i.fas {
   border-radius: 20px;
   text-align: center;
 }
-
 
 .leaderboard ol li p {
   position: absolute;
@@ -217,8 +222,9 @@ table tr td:nth-child(1) {
   background: #fa6855;
 }
 
-table tr th, table tr td {
-  box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
+table tr th,
+table tr td {
+  box-shadow: 0 7px 30px rgba(62, 9, 11, 0.3);
   text-align: center;
   width: 13rem;
   padding: 12px 13px 18px;
@@ -230,12 +236,13 @@ table tr th h2 {
   margin: 0;
 }
 
-table tr td form{
+table tr td form {
   display: inline-block;
 }
 
-table tr td a i.fa-user-edit, table tr td form button i.fa-trash-alt {
-  margin: 0 .5rem;
+table tr td a i.fa-user-edit,
+table tr td form button i.fa-trash-alt {
+  margin: 0 0.5rem;
   font-size: 1.5rem;
 }
 
@@ -248,7 +255,7 @@ table tr td form button {
 .pagination {
   font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: .5rem;
+  letter-spacing: 0.5rem;
 }
 
 span.page-btn {
@@ -288,7 +295,7 @@ section.about p {
 }
 
 figcaption {
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-style: italic;
   width: 300px;
 }
@@ -298,9 +305,8 @@ figcaption {
 --------------------*/
 
 @media (max-width: 576px) {
-
   /*--Rules for md size--*/
-  
+
   nav.navbar ul {
     padding-left: 0;
   }
@@ -316,16 +322,13 @@ figcaption {
   h3 {
     font-size: 1.4rem;
   }
-
 }
 
 @media (max-width: 480px) {
-
   /*--Rules for cellphones--*/
-  
-  table tr th, table tr td {
+
+  table tr th,
+  table tr td {
     padding: 0;
   }
-
 }
-

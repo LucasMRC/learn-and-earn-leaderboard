@@ -1,6 +1,17 @@
 const mongoose = require('mongoose');
 const Week = require('./models/week.js');
 
+async function seedDB(num) {
+	await Week.remove({});
+	for (let i = 0; i < num; i++) {
+		data.forEach(seed => {
+			Week.create(seed);
+		});
+	}
+	console.log(num * 3 + ' weeks created!');
+}
+
+module.exports = seedDB;
 
 const data = [
 	{
@@ -61,12 +72,12 @@ const data = [
 
 async function seedDB(num) {
 	await Week.remove({});
-	for (let i = 0; i < num; i++) {	
+	for (let i = 0; i < num; i++) {
 		data.forEach(seed => {
 			Week.create(seed);
 		});
 	}
-	console.log(num * 3 +' weeks created!')
+	console.log(num * 3 + ' weeks created!');
 }
 
 module.exports = seedDB;

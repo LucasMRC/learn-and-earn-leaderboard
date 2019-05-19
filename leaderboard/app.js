@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const engine = require('ejs-mate');
 const session = require('express-session');
 const methodOverride = require('method-override');
-// const seedDB = require('./seeds');
+const seedDB = require('./seeds');
 // const Week = require('./models/weeks');
 
 // Require Routes ==========================================
@@ -22,14 +22,16 @@ const app = express();
 
 // Uncomment to seed the Database!
 
-// seedDB(10);
+seedDB(10);
 
 // Connect with the database ===============================
-mongoose.connect('mongodb://localhost:27017/leaderboard', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/leaderboard', {
+  useNewUrlParser: true
+});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-	console.log('Connected to the database!');
+  console.log('Connected to the database!');
 });
 
 // use ejs-locals for all ejs templates:
@@ -57,7 +59,6 @@ app.use(
     saveUninitialized: true
   })
 );
-
 
 // define locals
 
